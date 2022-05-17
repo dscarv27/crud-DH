@@ -22,8 +22,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views')); // Define a localização da pasta das Views
 
 
-
-// ************ WRITE YOUR CODE FROM HERE ************
 // ************ Route System require and use() ************
 const mainRouter = require('./routes/main'); // Rotas main
 const productsRouter = require('./routes/products'); // Rotas /products
