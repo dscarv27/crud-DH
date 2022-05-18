@@ -24,20 +24,23 @@
 				</div>
 				<div class="col-12 col-lg-4">
 					<article class="product-detail-info">
-						<h2 class="product-detail-title">PRODUCT NAME</h2>
-						
-							<p class="product-detail-price small">
-								<span>$PRICE</span>
-								/
-								<b>DISCOUNT% OFF</b>
-							</p>
-							<p class="product-detail-price">
-								$FINAL PRICE
-							</p>
-							<p class="product-detail-price">
-								$PRICE
-							</p>
-
+						<h2 class="product-detail-title"><%= product.name %></h2>
+						<% if(product.discount > 0) { 
+							let finalPrice = (product.price * ((100 - product.discount) / 100)).toFixed(0)
+						%>
+						<p class="product-detail-price small">
+							<span>$<%= toThousand(product.price) %></span>
+							/
+							<b><%= product.discount %>% OFF</b>
+						</p>
+						<p class="product-detail-price">
+							$<%= toThousand(finalPrice) %>
+						</p>
+					<% } else { %>
+						<p class="product-detail-price">
+							$<%= toThousand(product.price) %>
+						</p>
+					<% } %>
 						<ul class="actions-list">
 							<li>
 								<i class="fas fa-credit-card"></i>
@@ -52,8 +55,8 @@
 						<a href="#" class="buy-now-button">COMPRAR AGORA</a>
 						<hr>
 
-						<a href="/products/edit/¿?" class="action-button edit">EDITAR PRODUTO</a>
-						<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
+						<a href="/products/edit/<%= product.id %>" class="action-button edit">EDITAR PRODUTO</a>
+						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex">
 							<button type="submit" class="action-button delete">APAGAR</button>
 						</form>
 					</article>
